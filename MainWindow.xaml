@@ -4,16 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LAB2"
-        mc:Ignorable="d"
-        Title="Pizzeria Colosseo" Height="450" Width="800" ResizeMode="NoResize" Loaded="frmMain_Loaded">
-
-    <Grid Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}">
+        xmlns:CustomCommands="clr-namespace:LAB2.CustomCommands"
+        mc:Ignorable="d" Title="Pizzeria Colosseo" Height="450" Width="800" ResizeMode="NoResize" Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}" 
+        Loaded="frmMain_Loaded">
+        
+    <Grid Height="396" VerticalAlignment="Top" MenuItem.Click="PizzaItemsShow_Click" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="190*"/>
-            <ColumnDefinition Width="67*"/>
-            <ColumnDefinition Width="505*"/>
-            <ColumnDefinition Width="11*"/>
-            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="356*"/>
+            <ColumnDefinition Width="31*"/>
+            <ColumnDefinition Width="413*"/>
         </Grid.ColumnDefinitions>
 
         <Menu x:Name="mnuMain" HorizontalAlignment="Left" Height="19" VerticalAlignment="Top" Width="81">
@@ -33,7 +32,8 @@
                     <MenuItem x:Name="canPizzaMenuItem" Header="Canibale Pizza"
 							  Click="canPizzaMenuItem_Click" IsCheckable="True"/>
                 </MenuItem>
-                <MenuItem Header="Stop" x:Name="mnuStop" Click="stopMenuItem_Click"/>
+                <MenuItem Header="Stop" x:Name="mnuStop" Click="stopMenuItem_Click" InputGestureText="Ctrl+S" Command="CustomCommands:StopCommand.Launch"/>
+                <MenuItem Header="Inventory" Command="ApplicationCommands.Print"/>
             </MenuItem>
         </Menu>
         <Label x:Name="lblTitle" Content=" Pizza - Bake &amp; Sale" HorizontalAlignment="Left" Margin="45.6,15,0,0" VerticalAlignment="Top" Height="41" Width="257" FontSize="24" FontWeight="Bold" Grid.Column="1" Grid.ColumnSpan="2"/>
@@ -57,14 +57,14 @@
             <Label x:Name="lblQuantity" Content="Quantity" Canvas.Top="3"/>
             <TextBox x:Name="txtQuantity" Height="23" Canvas.Left="61" TextWrapping="Wrap" Text="0" Canvas.Top="6" Width="100" TextAlignment="Right" KeyUp="txtQuantity_KeyUp"/>
             <Label x:Name="lblType" Content="Type" Canvas.Left="211" Canvas.Top="3"/>
-            <ComboBox x:Name="cmbType" Canvas.Left="251" Canvas.Top="6" Width="120"/>
+            <ComboBox x:Name="cmbType" Canvas.Left="251" Canvas.Top="6" Width="120" SelectionChanged="cmbType_SelectionChanged"/>
             <Label x:Name="lblPrice" Content="Price" Canvas.Left="427" Canvas.Top="2"/>
             <TextBox x:Name="txtPrice" Height="23" Canvas.Left="467" TextWrapping="Wrap" Text="0" Canvas.Top="6" Width="120" TextAlignment="Right" IsReadOnly="True"/>
             <ListBox x:Name="lstSale" Height="121" Canvas.Top="42" Width="587"/>
             <TextBox x:Name="txtTotal" Height="23" Canvas.Left="467" TextWrapping="Wrap" Text="0" Canvas.Top="173" Width="120" TextAlignment="Right" IsReadOnly="True"/>
-            <Button x:Name="btnAddToSale" Content="Add To Sale" Canvas.Left="624" Canvas.Top="69" Width="85"/>
-            <Button x:Name="btnRemoveItem" Content=" Remove Item" Canvas.Left="624" Canvas.Top="93" Width="85"/>
-            <Button x:Name="btnCheckOut" Content="Check Out" Canvas.Left="624" Canvas.Top="117" Width="85" FontWeight="Bold"/>
+            <Button x:Name="btnAddToSale" Content="Add To Sale" Canvas.Left="624" Canvas.Top="69" Width="85" Click="btnAddToSale_Click"/>
+            <Button x:Name="btnRemoveItem" Content=" Remove Item" Canvas.Left="624" Canvas.Top="93" Width="85" Click="btnRemoveItem_Click"/>
+            <Button x:Name="btnCheckOut" Content="Check Out" Canvas.Left="624" Canvas.Top="117" Width="85" FontWeight="Bold" Click="btnCheckOut_Click"/>
         </Canvas>
         <Label x:Name="lblTotal" Content="Total" HorizontalAlignment="Left" Margin="130,377,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="26"/>
 
